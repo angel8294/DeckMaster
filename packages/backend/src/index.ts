@@ -81,6 +81,12 @@ app.post('/api/export', async (req: Request, res: Response) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Backend listening at http://localhost:${port}`);
-});
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, () => {
+    console.log(`Backend listening at http://localhost:${port}`);
+  });
+}
+
+// For Vercel
+export default app;
